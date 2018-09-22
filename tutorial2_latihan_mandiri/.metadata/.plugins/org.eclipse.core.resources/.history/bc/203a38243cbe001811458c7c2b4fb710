@@ -1,0 +1,17 @@
+package com.example.demo.controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class PageController {
+	@RequestMapping("/generator")
+	public String generator(@RequestParam(value = "a", required = false, defaultValue = "0") int paramA, Model model,
+			@RequestParam(value = "b", required = false, defaultValue = "0") int paramB)  {
+		model.addAttribute("a",paramA);
+		model.addAttribute("b",paramB);
+		return "generator";
+	}
+}

@@ -1,0 +1,124 @@
+FAIZAH AFIFAH
+1606918093
+APAP C
+
+
+1. Ganti baris @RequestMapping(“/viral”) menjadi @RequestMapping(“/viral2jari”).
+Kemudian run kembali.
+a. Apakah terjadi compile error? 
+=>Tidak terjadi compile error pada console, tetapi
+terjadi runtime error pada url localhost:8080/viral yang diakses
+
+b. Coba akses localhost:8080/viral, berikan alasan dan jelaskan apa yang terjadi. 
+yang terjadi 
+=> Terjadi runtime error yang menampilkan tulisan "This application has no explicit 
+mapping for /error" yang menunjukkan bahwa telah terjadi error dan tidak ada fungsi yang 
+mendefiniskan secara eksplisit untuk error handling yang terjadi, kemudian juga ada tulisan
+status 404 atau "not found", hal ini dikarenakan RequestMapping yang digunakan untuk mengarahkan
+url mana yang akan ditampilkan telah berubah. 
+
+c. Apakah Kegunaan @RequestMapping(“/viral”)
+Kembalikan menjadi @RequestMapping(“/viral”)
+=> RequestMapping berfungsi sebagai suatu fungsi yang memetakan ke url mana template dan source code
+yang ada akan ditampilkan
+
+
+2. Ganti nama method index() menjadi nama method viral()
+a. Apakah terjadi compile error?
+=> Tidak terjadi compile error.
+
+b. Coba akses localhost:8080/viral, berikan alasan dan jelaskan apa yang terjadi.
+Kembalikan menjadi index()
+=> Tidak terjadi compile error/runtime error, karena cara kerja RequestMapping adalah
+dia akan memetakan url ("/viral") tepat ke method yang berada di bawahnya, dimana
+method tersebut akan mengembalikan ke templates viral.html. Karena yang dikembalikan
+langsung html dibawahnya, dan index() tidak dipanggil. 
+
+3. Ganti string return type menjadi menjadi return “viral2jari”
+a. Apakah terjadi compile error?
+=> Tidak terjadi compile error di console, tapi terjadi runtime error di website localhost
+
+b. Coba akses localhost:8080/viral, berikan alasan dan jelaskan apa yang terjadi.
+Terjadi error, karena nama html yang dipanggil tidak sesuai dengan return type method yang
+berada tepat dibawah RequestMapping
+
+c. Apakah kegunaan return type pada method controller tersebut?
+Kembalikan return type menjadi “viral”
+=> RequestMapping akan memetakan return type sebagai nama tampilan html yang akan ditampilkan.
+
+******************
+LATIHAN REQUEST PARAMETER
+Setiap ada perubahan pada kode, selalu usahakan run ulang.
+NOTE : Sebelum melakukan proses ini saya sudah mengimport @RequestParam terlebih dahulu.
+1. Mengapa tulisan “In My feeling” pada thymeleaf challenge tidak pernah muncul di
+browser?
+=> Hal ini dikarenakan pada RequestMapping parameter yang diminta hanya parameter name
+yang mana valuenya adalah "kiki", dan tag yang digunakan adalah th:text sehingga pesan "In My Feeling"
+akan dianggap sebagai message dan tidak ditampilkan. 
+
+2. Ubah nilai anotasi Request Mapping “/challenge” menjadi “/viral/challenge”.
+Deskripsikan hasil pada browser dan kembalikan ke bentuk sebelumnya!
+=> Tidak terjadi compile error, tetapi terjadi runtime error pada web browser yang mengembalikan 
+error karena parameter "name" tidak ditemukan. 
+
+3. Akses localhost:8080/challenge.
+a. Deskripsikan hasilnya
+=> Tidak terjadi compile error, tetapi terjadi runtime error pada web browser yang mengembalikan 
+error karena parameter "name" tidak ditemukan. RequestMapping mengembalikan ke view html challenge,
+sementara pada return challenge diminta parameter name yang harus dipenuhi.
+
+b. Ubah methodnya menjadi seperti di bawah ini, deskripsikan lalu kembalikan
+ke bentuk awal!
+=> Tidak terjadi compile error maupun runtime error pada web browser. Mengapa demikian? 
+parameter "required = false" membuat bahwa meskipun parameter name tidak dipenuhi, fungsi akan 
+tetap bisa dijalankan. Artinya, parameter name "tidak harus ada" untuk membuat fungsi berjalan. 
+Sebagai contoh, ketika kita menjalankan localhost:8080/challenge (tanpa parameter
+?name=kiki) maka tampilan tetap keluar hanya saja value untuk name dikembalikan sebagai null. 
+Akan tetapi, jika parameter name diberikan, maka fungsinya juga akan berjalan seperti biasa. 
+
+c. Ubah methodnya menjadi seperti di bawah ini, deskripsikan lalu kembalikan
+ke bentuk awal!
+=> Tidak terjadi compile error maupun runtime error pada web browser. Mengapa demikian?
+sama seperti penjelasan pada b, hanya saja karena diberikan defaultValue = "kiki", sehingga
+meskipun url yang dijalankan tidak secara langsung menginput parameter (localhost:8080/challenge?name=kiki)
+dan hanya memanggil (localhost:8080/challenge) biasa tidak akan error/null karena sudah di setdefault dengan
+defaultValue yaitu kiki di dalam method.
+
+******************
+
+LATIHAN PATH VARIABLE 
+Setiap ada perubahan pada kode, selalu usahakan run ulang
+1. Akses localhost:8080/challenge/
+Apakah hasil dari halaman tersebut?
+=> Tidak terjadi compile error pada console, tetapi terjadi runtime error pada web browser yang mengembalikan
+pesan bahwa parameter name tidak ditemukan. Hal ini jelas karena tidak ada kondisi required = false, default Value,
+hingga Path Variable yang memberikan parameter tersebut. 
+
+2. Ubah method challengePath menjadi seperti berikut
+Akses localhost:8080/challenge/
+Apakah hasil dari halaman tersebut?
+=> Hasil yang ditampilkan adalah :
+KB do you love me?
+Are you riding?
+
+Hal ini dikarenakan pada request mapping diberikan pilihan optional, jika parameter name tersedia pada Path Variabel
+maka akan dikembalikan sesuai parameter di Path Variabel, akan tetapi karena akses yang diminta adalah localhost:8080/challenge/ saja
+maka yang dipanggil adalah fungsi else.
+
+
+3. Akses localhost:8080/challenge/kiki
+Apakah hasil dari halaman tersebut?
+=> Hasil yang ditampilkan adalah :
+kiki do you love me?
+Are you riding?
+
+Hal ini dikarenakan pada request mapping diberikan pilihan optional, jika parameter name tersedia pada Path Variabel
+maka akan dikembalikan sesuai parameter di Path Variabel. dan karena pada path variabel sudah diberikan value parameter 
+name berupa kiki, fungsi yang dikembalikan adalah fungsi "if" karena value namenya present. 
+
+***********************************
+
+
+
+
+

@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>viral generator</title>
+	</head>
+	<body>
+		<h1>Mashook Pak Ekoo!!</h1>
+	</body>
+</html>
